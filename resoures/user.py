@@ -23,7 +23,8 @@ class UserRegister(Resource):
         if UserModel.find_by_username(username=data['username']):
             return {"message": "User already exists"}, 400
         else:
-            UserModel(data['username'], data['password']).save_to_db()
+            user = UserModel(data['username'], data['password'])
+            user.save_to_db()
             return {"message": "User Created"}, 201
 
 
