@@ -6,7 +6,7 @@ from security import authenticate, identity
 from resoures.user import UserRegister
 from resoures.item import ItemList, Item
 from resoures.store import StoreList, Store
-import db
+
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
@@ -14,10 +14,6 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.secret_key = "Hardik"
 api = Api(app)
 
-
-@app.before_first_request
-def create_table():
-    db.create_all()
 
 
 jwt = JWT(app, authenticate, identity) # /auth
